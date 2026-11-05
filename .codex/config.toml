@@ -1,0 +1,15 @@
+# Shared project defaults. Codex loads this file only in a trusted project.
+default_permissions = "workspace-only"
+approval_policy = "never"
+
+[permissions.workspace-only]
+extends = ":workspace"
+
+[permissions.workspace-only.filesystem]
+":root" = "deny"
+":minimal" = "read"
+":tmpdir" = "write"
+":slash_tmp" = "write"
+
+[permissions.workspace-only.network]
+enabled = true

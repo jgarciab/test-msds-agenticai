@@ -1,0 +1,16 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.Rhistory
+.RData
+.Rproj.user/
+.ipynb_checkpoints/
+.env
+.env.*
+!.env.example
+
+# Data, results, and agent settings are trackable by default.
+# Review for sensitive or large files before staging.
+# The .env exclusions above protect local credentials.
+# Ignoring a file does not remove it from existing Git history.
