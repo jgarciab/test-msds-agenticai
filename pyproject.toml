@@ -1,0 +1,15 @@
+[project]
+name = "overfitting-app"
+version = "0.1.0"
+description = "Interactive marimo app that teaches overfitting with simulated data"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "marimo>=0.25.2",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
