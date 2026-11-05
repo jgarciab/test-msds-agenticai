@@ -1,3 +1,42 @@
+# Overfitting, one slider at a time
+
+An interactive [marimo](https://marimo.io) app that teaches overfitting with simulated data. Students fit polynomials to noisy samples from a sine curve and change the degree, the number of training points, and the noise. It runs entirely in the browser (WebAssembly), with no server.
+
+**Live app:** <https://javier.science/test-msds-agenticai/> (`jgarciab.github.io/test-msds-agenticai/` redirects there).
+
+Design and plan: [docs/study_design.md](docs/study_design.md), [docs/implementation_plan.md](docs/implementation_plan.md).
+
+## Run it yourself
+
+Requires [uv](https://docs.astral.sh/uv/); uv installs Python 3.12 and the locked dependencies (marimo, numpy, matplotlib, pytest) from `uv.lock`. Developed and checked on macOS 27 (arm64) with uv 0.11.25. Run all commands from the project root.
+
+```bash
+uv sync                                  # create the environment
+uv run marimo run 01_overfitting_app.py  # open the app
+uv run marimo edit 01_overfitting_app.py # edit the notebook
+uv run pytest 01_overfitting_app.py      # known-answer checks
+uv run marimo export html-wasm 01_overfitting_app.py -o dist --mode run  # browser-only build
+python -m http.server --directory dist   # view that build at http://localhost:8000
+```
+
+`uv sync` creates `.venv/` in the project folder. If the folder is synced to cloud storage, set `UV_PROJECT_ENVIRONMENT` to a path outside it first.
+
+## Deployment
+
+On every push to `main`, [.github/workflows/deploy.yml](.github/workflows/deploy.yml) installs from `uv.lock`, runs the checks, exports the app, and deploys it to GitHub Pages. Failing checks stop the deployment. The repository needs **Settings → Pages → Source: GitHub Actions**. In the browser, Pyodide supplies its own numpy and matplotlib builds, whose versions can differ from `uv.lock`.
+
+## AI use
+
+- **Tool and model:** Claude Code desktop app (Code tab), Claude Opus 5.5 (`claude-opus-5-5`), accessed 2026-11-05.
+- **Tasks assisted:** Drafted the study design and implementation plan through discussion; the researcher made the design decisions and approved both documents. Wrote the app, checks, workflow, and this README; ran the checks; deployed.
+- **Extent of automation and review:** The researcher reviewed and approved Unit 1.1. At the researcher's request, Units 2.1–4.1, the final rerun, and the push to GitHub were done by the AI without per-unit review; researcher review of that work is pending (see the plan's evidence).
+- **Configuration:** Project instructions in `AGENTS.md`/`CLAUDE.md` and the skills `develop-research-plan` and `implement-and-verify`, as in template commit `7283be7`; the ponytail plugin (which asks for minimal code) was active; commands ran in Claude Code's sandbox. No persistent memory was used; all context came from one conversation.
+- **Data shared with AI:** None beyond the project files; the app uses only simulated data. No AI-generated research observations.
+
+---
+
+*The rest of this README is the guide from the project template.*
+
 # ODISSEI SoDa Agentic Research Project Starter
 
 A starting point for research with AI agents, with you in control. Clarify your question, agree on a plan, and build an analysis you can explain and check.
