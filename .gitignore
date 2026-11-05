@@ -14,3 +14,5 @@ __pycache__/
 # Review for sensitive or large files before staging.
 # The .env exclusions above protect local credentials.
 # Ignoring a file does not remove it from existing Git history.
+_site/
+.marimo/

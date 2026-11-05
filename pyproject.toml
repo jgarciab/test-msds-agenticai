@@ -1,0 +1,9 @@
+[project]
+name = "overfitting-teaching-app"
+version = "0.1.0"
+description = "An interactive marimo demonstration of overfitting"
+requires-python = ">=3.12,<3.13"
+dependencies = ["marimo", "numpy", "matplotlib"]
+
+[tool.uv]
+package = false
