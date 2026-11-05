@@ -168,15 +168,24 @@ Based on `docs/study_design.md` (Agreed 2026-11-05). A unit is one numbered task
 
 ### Final completion criteria
 
-- [ ] All units meet their completion criteria.
-- [ ] The full rerun produces the expected outputs.
-- [ ] The app has been reviewed against the agreed design.
-- [ ] Another person can rerun and deploy it from the README.
-- [ ] AI-use records are present, with unknown details marked.
-- [ ] Remaining limitations and incomplete checks are reported.
-- [ ] Changes have been reviewed; Git checkpoints made if requested.
+- [ ] All units meet their completion criteria. *(Agent checks pass; researcher review of 2.1–4.1 is pending.)*
+- [ ] The full rerun produces the expected outputs. *(Local rerun: yes. Live deployment: pending the push.)*
+- [ ] The app has been reviewed against the agreed design. *(Agent: yes; researcher teaching review pending.)*
+- [ ] Another person can rerun and deploy it from the README. *(All README commands ran except the local-server ones, which the sandbox blocks.)*
+- [x] AI-use records are present, with unknown details marked.
+- [x] Remaining limitations and incomplete checks are reported.
+- [ ] Changes have been reviewed; Git checkpoints made if requested. *(Commits made at the researcher's request; review pending.)*
 
-**Final evidence:** —
+**Final evidence** (agent, 2026-11-05, researcher's Mac in the Claude Code sandbox):
+
+- Fresh rerun: cloned the committed repository (`679b4c6`) into a temporary folder and created a new environment with `uv sync --locked` (Python 3.12.13). `uv run pytest 01_overfitting_app.py` gave 7 passed. The export succeeded, and the new `dist/` was file-for-file identical to the export checked in the browser (Unit 3.1).
+- Design consistency: the exported page contains the agreed slider ranges, defaults and step (degree 1–15/3, *n* 16–200/20, σ 0–1/0.3, step 0.05). Browser behaviour matched design sections 4–6 (Units 2.2 and 2.3).
+- Not done by the agent:
+  - Push to GitHub. The sandbox cannot read the researcher's GitHub credentials, so `git push` failed. The researcher runs it (see README or the session).
+  - Checking the Action run and the live site after the push.
+  - Local `marimo run`/`edit` and `http.server`, which need local ports.
+- Remote `main` before the push held a different implementation (merge of PR #1, `08e15cb`). The researcher asked for it to be replaced, and the push command uses `--force-with-lease` against `08e15cb`. The branch `origin/feature/overfitting-app` is left untouched.
+- Researcher review of Units 2.1–4.1 and the teaching review: pending.
 
 ## 6. Open issues and revisions
 
